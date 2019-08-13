@@ -1,0 +1,20 @@
+{
+  "name": "mongodbapp",
+  "version": "1.0.0",
+  "description": "my first node app with mongo db",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "author": "zekaryasdinku@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
