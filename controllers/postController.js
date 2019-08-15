@@ -1,9 +1,7 @@
-const express = require("express");
 const Post = require("../models/Post");
-const router = express.Router();
 
-// GET ALL POSTS
-router.get("/", async (req, res) => {
+
+exports.getAllPosts = async (req,res) =>{
     try {
         const allPosts = await Post.find();
         res.json(allPosts);
@@ -12,10 +10,10 @@ router.get("/", async (req, res) => {
             msg: error
         });
     }
-})
+}
 
-//SAVE POST
-router.post("/", async (req, res) => {
+
+exports.savePosts = async (req,res) =>{
     const post = new Post({
         title: req.body.title,
         description: req.body.description
@@ -29,22 +27,21 @@ router.post("/", async (req, res) => {
             msg: error
         });
     }
-})
+}
 
-//GET POST BY ID
-router.get("/:id", async (req, res) => {
-    try {
-        const singlePost = await Post.findById(req.params.id);
-        res.json(singlePost);
-    } catch (error) {
-        res.json({
-            msg: error
-        });
-    }
-})
+exports.getPostsById = async (req,res) =>{
+        try {
+            const singlePost = await Post.findById(req.params.id);
+            res.json(singlePost);
+        } catch (error) {
+            res.json({
+                msg: error
+            });
+        }
+}
 
-//DELETE POST
-router.delete("/:id", async (req, res) => {
+
+exports.deletePost = async (req,res)=>{
     try {
         const deletedPost = await Post.remove({
             _id: req.params.id
@@ -55,11 +52,9 @@ router.delete("/:id", async (req, res) => {
             msg: error
         });
     }
-})
+}
 
-
-//UPDATE POST
-router.patch("/:id", async (req, res) => {
+exports.updatePost = async (req,res)=>{
     try {
         const updatedPost = await Post.updateOne({
             _id: req.params.id
@@ -74,20 +69,4 @@ router.patch("/:id", async (req, res) => {
             msg: error
         });
     }
-})
-
-module.exports = router;
-
-// router.post("/",(req,res)=>{
-//     const post = new Post({
-//         title : req.body.title,
-//         description : req.body.description
-//     })
-//     post.save()
-//         .then(data =>{
-//             res.json(data);
-//         })
-//         .catch(err=>{
-//             res.json({msg : err})
-//         })
-// })
+}

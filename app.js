@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/post",require("./routes/posts"));
+app.use("/post",require("./routes/postRoute"));
 
 
 mongoose.connect(process.env.DB_CONNECTION,
